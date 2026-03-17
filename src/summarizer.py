@@ -5,7 +5,7 @@ from transformers import pipeline
 
 # Load a pretrained summarization model
 # We use Google's FLAN-T5 model which is good for instruction-based text tasks
-summarizer = pipeline("summarization", model="google/flan-t5-base")
+summarizer = pipeline("summarization", model="google/flan-t5-base", device=-1)
 
 
 # ---------------------------------------------------------

@@ -1,4 +1,3 @@
-# Import the YouTubeTranscriptApi library
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api._errors import RequestBlocked, NoTranscriptFound
 
@@ -6,7 +5,6 @@ from youtube_transcript_api._errors import RequestBlocked, NoTranscriptFound
 # ---------------------------------------------------------
 # FUNCTION: get_video_id
 # ---------------------------------------------------------
-# Extract the YouTube video ID from different URL formats
 
 def get_video_id(url):
 
@@ -23,7 +21,6 @@ def get_video_id(url):
 # ---------------------------------------------------------
 # FUNCTION: get_transcript
 # ---------------------------------------------------------
-# Retrieve transcript subtitles with timestamps
 
 def get_transcript(url):
 
@@ -31,10 +28,9 @@ def get_transcript(url):
 
     try:
 
-        transcript = YouTubeTranscriptApi.get_transcript(
-            video_id,
-            languages=["en", "hi"]
-        )
+        api = YouTubeTranscriptApi()
+
+        transcript = api.fetch(video_id)
 
     except RequestBlocked:
         print("YouTube blocked the request.")
@@ -53,8 +49,8 @@ def get_transcript(url):
     for item in transcript:
 
         segments.append({
-            "text": item["text"],
-            "start": round(item["start"], 2)
+            "text": item.text,
+            "start": round(item.start, 2)
         })
 
     return segments

@@ -27,7 +27,7 @@ def clean_text(text):
     # Step 3: Remove extra spaces created during cleaning
     # \s+ means one or more whitespace characters
     text = re.sub(r"\s+", " ", text)
-
+    text = text.lower()
     # Step 4: Remove leading and trailing spaces
     return text.strip()
 
